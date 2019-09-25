@@ -91,6 +91,29 @@ task:
 .PHONY: terminal
 terminal:
 	scripts/terminal.sh
+
+# eks-only targets:
+
+.PHONY: deps-eks
+deps-eks: buildir
+	scripts/eks_deps.sh
+
+.PHONY: eks-deploy
+eks-deploy:
+	scripts/eks_deploy.sh
+
+.PHONY: eks-prepare
+eks-prepare:
+	scripts/eks_prepare.sh
+
+.PHONY: clean-eks
+clean-eks:
+	scripts/eks_clean.sh
+
+.PHONY: eks
+# eks: clean-eks deps-eks eks-deploy eks-prepare
+eks: deps-eks eks-deploy eks-prepare
+
 # scf-only targets:
 
 .PHONY: restart
