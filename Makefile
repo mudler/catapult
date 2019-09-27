@@ -102,17 +102,12 @@ deps-eks: buildir
 eks-deploy:
 	scripts/eks_deploy.sh
 
-.PHONY: eks-prepare
-eks-prepare:
-	scripts/eks_prepare.sh
-
 .PHONY: clean-eks
 clean-eks:
 	scripts/eks_clean.sh
 
 .PHONY: eks
-# eks: clean-eks deps-eks eks-deploy eks-prepare
-eks: deps-eks eks-deploy eks-prepare
+eks: clean-eks deps-eks eks-deploy
 
 # scf-only targets:
 

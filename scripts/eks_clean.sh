@@ -1,11 +1,7 @@
 #!/usr/bin/env bash
 
-# Destroys an existing Caasp4 cluster on openstack
-#
-# Requirements:
-# - Built skuba docker image
-# - Sourced openrc.sh
-# - Key on the ssh keyring
+# Requires:
+# - aws credentials present
 
 . scripts/include/common.sh
 
@@ -16,7 +12,7 @@ if [ -d ../"$BUILD_DIR" ]; then
     . .envrc
 
     pushd cap-terraform/eks
-    terraform destroy
+    terraform destroy -auto-approve
     popd
 
     popd
